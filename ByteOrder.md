@@ -110,6 +110,14 @@ addr.sin_port = htons(9000);
 SocketFunc(...,(SOCKADDR *)&addr, sizeof(addr), ...);
 ```
 
-* 소켓 함수가 소켓 주소 구조체를 입력 
-* 소켓 함수가 소켓 주소 구조체를 입력 받아
-* 소켓 함수가
+* 소켓 함수가 소켓 주소 구조체를 입력 받아 내용을 채우면, 응용 프로그램이 이를 출력 등의 목적으로 사용하는 경우
+
+```c++
+// 소켓 함수 호출
+SOCKADDR_IN addr;
+int addrlen = sizeof(addr);
+SocketFunc(..., (SOCKADDR *)&aadr, &addrlen, ...);
+
+// 소켓 주소 구조체를 사용한다.
+printf("IP 주소 = %s, 포트 번호 = %d\n", inet_ntoa(addr.sin_addr), ntohs(addr.sin_port));
+```
